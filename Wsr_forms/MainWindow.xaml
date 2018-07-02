@@ -1,0 +1,79 @@
+﻿<Window x:Class="Wsr_forms.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wsr_forms"
+        mc:Ignorable="d"
+        Title="Главная форма" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--Имя-->
+        <TextBlock HorizontalAlignment="Left" Margin="61,10,0,0" TextWrapping="Wrap" Text="Имя:" VerticalAlignment="Top"/>
+        <TextBox x:Name="firstName" HorizontalAlignment="Left" Height="23" Margin="92,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" IsEnabled="False"/>
+        <Button x:Name="editFirstName" Content="Изменить" HorizontalAlignment="Left" Margin="257,11,0,0" VerticalAlignment="Top"/>
+        <!--Фамилия-->
+        <TextBlock HorizontalAlignment="Left" Margin="35,53,0,0" TextWrapping="Wrap" Text="Фамилия:" VerticalAlignment="Top"/>
+        <TextBox x:Name="lastName" HorizontalAlignment="Left" Height="23" Margin="92,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" IsEnabled="False"/>
+        <Button x:Name="editLastName" Content="Изменить" HorizontalAlignment="Left" Margin="257,54,0,0" VerticalAlignment="Top"/>
+        <!--Отчество-->
+        <TextBlock HorizontalAlignment="Left" Margin="34,94,0,0" TextWrapping="Wrap" Text="Отчество:" VerticalAlignment="Top"/>
+        <TextBox x:Name="middleName" HorizontalAlignment="Left" Height="23" Margin="92,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" IsEnabled="False"/>
+        <Button x:Name="editMiddleName" Content="Изменить" HorizontalAlignment="Left" Margin="257,95,0,0" VerticalAlignment="Top"/>
+        <!--Темперамент-->
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Темперамент:" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="comboBoxTemperament" HorizontalAlignment="Left" Margin="92,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160"/>
+        <!--Характер-->
+        <TextBlock HorizontalAlignment="Left" Margin="34,37,0,0" TextWrapping="Wrap" Text="Характер:" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="comboBoxCharacter" HorizontalAlignment="Left" Margin="92,37,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160"/>
+        <!--Знак зодиака-->
+        <TextBlock HorizontalAlignment="Left" Margin="13,64,0,0" TextWrapping="Wrap" Text="Знак зодиака:" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="comboBoxZnak" HorizontalAlignment="Left" Margin="92,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160"/>
+        <!--Вид спорта 1-->
+        <TextBlock HorizontalAlignment="Left" Margin="13,91,0,0" TextWrapping="Wrap" Text="Вид спорта 1:" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="comboBoxTypeSportFirst" HorizontalAlignment="Left" Margin="92,91,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160"/>
+        <!--Вид спорта 2-->
+        <TextBlock HorizontalAlignment="Left" Margin="12,118,0,0" TextWrapping="Wrap" Text="Вид спорта 2:" VerticalAlignment="Top" Grid.Row="1"/>
+        <ComboBox x:Name="comboBoxTypeSportSecond" HorizontalAlignment="Left" Margin="92,118,0,0" Grid.Row="1" VerticalAlignment="Top" Width="160"/>
+        <!--фото профиля-->
+        <Image x:Name="profilePhoto" Grid.Column="1" Grid.RowSpan="2"/>
+        <!--Иконки профиля-->
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="temperamentPhoto" Grid.RowSpan="2"/>
+            <Image x:Name="znakPhoto" Grid.Column="1" Grid.RowSpan="2"/>
+            <Image x:Name="charakterPhoto" Grid.Column="2" Grid.RowSpan="2"/>
+            <Image x:Name="typeSport1Photo" Grid.Column="3"/>
+            <Image x:Name="typeSport2Photo" Grid.Column="3" Grid.Row="1"/>
+        </Grid>
+        <ListView x:Name="imageList" Grid.Column="2" Grid.RowSpan="3">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Image Source="{Binding Path=ImagePath}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="Назад" Grid.Row="2" Margin="5" Click="Button_Click"/>
+
+    </Grid>
+</Window>

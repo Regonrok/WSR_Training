@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="DBModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Temperaments" EntityType="DBModel.Temperament" />
+    <EntitySet Name="Zodiaks" EntityType="DBModel.Zodiak" />
+    <EntitySet Name="Sports" EntityType="DBModel.Sports" />
+    <EntitySet Name="Photos" EntityType="DBModel.Photo" />
+    <EntitySet Name="Users" EntityType="DBModel.User" />
+    <EntitySet Name="SportsUsers" EntityType="DBModel.SportsUser" />
+    <AssociationSet Name="PhotoUser" Association="DBModel.PhotoUser">
+      <End Role="Photo" EntitySet="Photos" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="ZodiakUser" Association="DBModel.ZodiakUser">
+      <End Role="Zodiak" EntitySet="Zodiaks" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="TemperamentUser" Association="DBModel.TemperamentUser">
+      <End EntitySet="Temperaments" Role="Temperament" />
+      <End EntitySet="Users" Role="User" />
+    </AssociationSet>
+    <AssociationSet Name="SportsSportsUser" Association="DBModel.SportsSportsUser">
+      <End Role="Sports" EntitySet="Sports" />
+      <End Role="SportsUser" EntitySet="SportsUsers" />
+    </AssociationSet>
+    <AssociationSet Name="UserSportsUser" Association="DBModel.UserSportsUser">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SportsUser" EntitySet="SportsUsers" />
+    </AssociationSet>
+    <EntitySet Name="Characters" EntityType="DBModel.Character" />
+    <AssociationSet Name="CharacterUser" Association="DBModel.CharacterUser">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Temperament">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+    <Property Name="Img" Type="Binary" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zodiak">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+    <Property Name="Img" Type="Binary" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sports">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+    <Property Name="Img" Type="Binary" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+    <Property Name="Img" Type="Binary" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+    <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="100" Unicode="true" />
+    <NavigationProperty Name="Photo" Relationship="DBModel.PhotoUser" FromRole="User" ToRole="Photo" />
+    <Property Name="PhotoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Zodiak" Relationship="DBModel.ZodiakUser" FromRole="User" ToRole="Zodiak" />
+    <Property Name="ZodiakId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Temperament" Relationship="DBModel.TemperamentUser" FromRole="User" ToRole="Temperament" />
+    <Property Name="TemperamentId" Nullable="false" Type="Int32" />
+    <NavigationProperty Name="Character" Relationship="DBModel.CharacterUser" FromRole="User" ToRole="Character" />
+    <Property Name="CharacterId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SportsUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Sport" Relationship="DBModel.SportsSportsUser" FromRole="SportsUser" ToRole="Sports" />
+    <Property Name="SportsId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="DBModel.UserSportsUser" FromRole="SportsUser" ToRole="User" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="PhotoUser">
+    <End Type="DBModel.Photo" Role="Photo" Multiplicity="1" />
+    <End Type="DBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="PhotoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ZodiakUser">
+    <End Type="DBModel.Zodiak" Role="Zodiak" Multiplicity="1" />
+    <End Type="DBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zodiak">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="ZodiakId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TemperamentUser">
+    <End Type="DBModel.Temperament" Multiplicity="1" Role="Temperament" />
+    <End Type="DBModel.User" Multiplicity="*" Role="User" />
+    <ReferentialConstraint>
+      <Principal Role="Temperament">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="TemperamentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SportsSportsUser">
+    <End Type="DBModel.Sports" Role="Sports" Multiplicity="1" />
+    <End Type="DBModel.SportsUser" Role="SportsUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sports">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SportsUser">
+        <PropertyRef Name="SportsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserSportsUser">
+    <End Type="DBModel.User" Role="User" Multiplicity="1" />
+    <End Type="DBModel.SportsUser" Role="SportsUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SportsUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Character">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Img" Type="Binary" Nullable="false" />
+  </EntityType>
+  <Association Name="CharacterUser">
+    <End Type="DBModel.Character" Role="Character" Multiplicity="1" />
+    <End Type="DBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CharacterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

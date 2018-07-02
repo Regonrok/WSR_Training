@@ -1,0 +1,18 @@
+﻿<Window x:Class="Wsr_forms.SportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wsr_forms"
+        mc:Ignorable="d"
+        Title="Форма спорта" Height="168" Width="287" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="14,18,0,0" TextWrapping="Wrap" Text="1 вид спорта:" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxFirstSport" HorizontalAlignment="Left" Margin="92,15,0,0" VerticalAlignment="Top" Width="160"/>
+        <TextBlock HorizontalAlignment="Left" Margin="14,45,0,0" TextWrapping="Wrap" Text="2 вид спорта:" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboBoxSecondSport" HorizontalAlignment="Left" Margin="92,42,0,0" VerticalAlignment="Top" Width="160"/>
+        <Button Content="Сброс" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Width="119" Height="45" Click="Reset"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Margin="150,82,0,0" VerticalAlignment="Top" Width="119" Height="45" Click="Return"/>
+
+    </Grid>
+</Window>
