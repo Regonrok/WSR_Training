@@ -11,7 +11,7 @@ namespace MobileViewForms
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new TabPage();
 		}
 
 		protected override void OnStart ()

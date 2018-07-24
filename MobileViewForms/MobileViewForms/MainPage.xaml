@@ -3,12 +3,83 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileViewForms"
              x:Class="MobileViewForms.MainPage">
-
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <ScrollView>
+        <StackLayout>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="Medium" Margin="10, 0, 0, 0">Имя</Label>
+                <Entry x:Name="firstNameField" Grid.Column="1" Text="" Placeholder="Имя" IsEnabled="False"/>
+                <Button Grid.Column="2" Text="Enable" Clicked="FirstNameBtnClick"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="Medium" Margin="10, 0, 0, 0">Фамилия</Label>
+                <Entry x:Name="middleNameField" Grid.Column="1" Text="" Placeholder="Фамилия" IsEnabled="False"/>
+                <Button Grid.Column="2" Text="Enable" Clicked="LastNameBtnClick"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="Medium" Margin="10, 0, 0, 0">Отчество</Label>
+                <Entry x:Name="lastNameField" Grid.Column="1" Text="" Placeholder="Отчество" IsEnabled="False"/>
+                <Button Grid.Column="2" Text="Enable" Clicked="MiddleNameBtnClick"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="Medium" Margin="10, 0, 0, 0">Темперамент</Label>
+                <Picker x:Name="temperament" SelectedIndexChanged="TemperamentSelect" Grid.Column="1"/>
+            </Grid>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="Medium" Margin="10, 0, 0, 0">Характер</Label>
+                <Picker x:Name="charakter" SelectedIndexChanged="CharackterSelect" Grid.Column="1"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="120"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="photo" Grid.ColumnSpan="2" Grid.RowSpan="2" BackgroundColor="Blue"/>
+                <Image x:Name="temperamentImg" Grid.Column="0" Grid.Row="2" BackgroundColor="Aqua"/>
+                <Image x:Name="charackterImg" Grid.Column="1" Grid.Row="2" BackgroundColor="BlanchedAlmond"/>
+                <Image x:Name="zodiakImg" Grid.Column="0" Grid.Row="3" BackgroundColor="Gold"/>
+                <Image x:Name="sportImg" Grid.Column="1" Grid.Row="3" BackgroundColor="Fuchsia"/>
+            </Grid>
+            <ListView x:Name="listView" ItemSelected="ListViewSelected" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Image BackgroundColor="{Binding Img}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
     
 </ContentPage>
