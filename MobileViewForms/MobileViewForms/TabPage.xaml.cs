@@ -9,15 +9,54 @@ using Xamarin.Forms.Xaml;
 
 namespace MobileViewForms
 {
+    #region Дополнительные классы
     public class PhotoOrImg
     {
         public Color Img { get; set; }
     }
 
+    public class DataForTemperamentForm
+    {
+        public string TextQuestion { get; set; }
+        public string ButtonText { get; set; }
+        public Color ButtonColor { get; set; }
+        public int Value { get; set; }
+    }
+    #endregion
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabPage : TabbedPage
     {
-        public TabPage ()
+        List<DataForTemperamentForm> questions = new List<DataForTemperamentForm>()
+        {
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 1", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 2", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 3", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 4", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 5", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 6", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 7", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 8", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 9", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 10", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 11", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 12", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 13", Value = 1},
+            new DataForTemperamentForm() {ButtonColor = Color.White, ButtonText = "Никогда", TextQuestion = "вопрос 14", Value = 1}
+        };
+
+        List<string> sports = new List<string>()
+        {
+            "",
+            "Бег",
+            "Коньки",
+            "Велоспорт",
+            "Тенис",
+            "Футбол",
+            "Хокей"
+        };
+
+        public TabPage()
         {
             InitializeComponent();
 
@@ -68,6 +107,11 @@ namespace MobileViewForms
 
             charakter.SelectedIndex = 0;
             temperament.SelectedIndex = 0;
+
+            listViewTemperament.ItemsSource = questions;
+
+            firstSportPicker.ItemsSource = sports;
+            secondSportPicker.ItemsSource = sports;
         }
 
         private void OnClick(View arg1, object arg2)
@@ -175,6 +219,45 @@ namespace MobileViewForms
         }
 
         #endregion
+
+        // Клик по кнопке с вариантом ответа
+        private void QuestionBtnClick(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            Grid parentG = button.ParentView as Grid;
+            Label valueL = parentG.Children[0] as Label;
+
+            switch (int.Parse(valueL.Text))
+            {
+                case 1:
+                    valueL.Text = "2";
+                    button.Text = "Иногда";
+                    button.BackgroundColor = Color.Green;
+                    break;
+                case 2:
+                    valueL.Text = "3";
+                    button.Text = "Часто";
+                    button.BackgroundColor = Color.Yellow;
+                    break;
+                case 3:
+                    valueL.Text = "4";
+                    button.Text = "Всегда";
+                    button.BackgroundColor = Color.Red;
+                    break;
+                case 4:
+                    valueL.Text = "1";
+                    button.Text = "Никогда";
+                    button.BackgroundColor = Color.White;
+                    break;
+            }
+        }
+
+        // сброс спорта
+        private void ResetSportClick(object sender, EventArgs e)
+        {
+            firstSportPicker.SelectedIndex = 0;
+            secondSportPicker.SelectedIndex = 0;
+        }
     }
 
 

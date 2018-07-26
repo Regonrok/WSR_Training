@@ -115,18 +115,40 @@
         </Grid>
     </ContentPage>
     <ContentPage Title="Темперамент">
-        <ListView>
+        <ListView x:Name="listViewTemperament">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid>
-                            <Label Text="{Binding LabelText}"/>
-                            <Button/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Label IsVisible="False" Text="{Binding Value, Mode=TwoWay}"/>
+                            <Label Grid.Column="0" Text="{Binding TextQuestion}" Margin="10, 0, 0, 0"/>
+                            <Button Grid.Column="1" Text="{Binding ButtonText, Mode=TwoWay}" BackgroundColor="{Binding ButtonBackgroundColor, Mode=TwoWay}" Clicked="QuestionBtnClick"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage>
-    <ContentPage Title="Спорт" />
+    <ContentPage Title="Спорт" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label>1 вид спорта</Label>
+            <Label Grid.Row="1">2вид спорта</Label>
+            <Picker Grid.Column="1" x:Name="firstSportPicker"/>
+            <Picker Grid.Column="1" Grid.Row="1" x:Name="secondSportPicker"/>
+            <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="Сброс" Clicked="ResetSportClick"/>
+        </Grid>
+    </ContentPage>
 </TabbedPage>
